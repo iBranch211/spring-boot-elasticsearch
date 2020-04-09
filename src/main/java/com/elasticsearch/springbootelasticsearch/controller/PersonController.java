@@ -27,7 +27,7 @@ public class PersonController {
     //tüm kişi listesini döndürür
     @GetMapping("/api/v1/people")
     public ResponseEntity<?> getPersonAll(){
-        Iterable<Person> people = personService.getPersonAll();//kişi listesini aldık
+        List<Person> people = personService.getPersonAll();//kişi listesini aldık
         return ResponseEntity.ok(people);//kişi listesini döndük 200 status ile.
     }
 

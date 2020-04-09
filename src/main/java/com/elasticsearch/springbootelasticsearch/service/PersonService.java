@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 //Elasitc search queryden yada spring datadan query oluşturup,elasticde sorgulayabiliriz
 @Service
@@ -22,8 +24,10 @@ public class PersonService {
     }
 
     //tüm kişi listesini döndük
-    public Iterable<Person> getPersonAll() {
-        return personRepository.findAll();
+    public List<Person> getPersonAll() {
+        //default iterator döner.biz listeye çevirdik
+        return StreamSupport.stream(personRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     //kişi oluşturduk
